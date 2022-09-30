@@ -1,0 +1,19 @@
+#main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#main > div {
+  background-color: antiquewhite;
+  height: 4000px;
+  max-width: 1840px;
+  min-width: 240px;
+  width: 100%;
+  position: relative;
+}
+
+#main .scroll {
+  position: fixed;
+  top: 10px;
+}
