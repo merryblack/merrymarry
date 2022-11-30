@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { useWindowScrollPositions } from 'hooks/useWindowScrollPositions';
 import styled from 'styled-components';
-import BackgroundImageFlower from 'assets/flower-g1e14e7a4e_1920.png';
 import { useSwipeable } from 'react-swipeable';
 import Pages from 'components/Pages';
+import Pagination from 'components/pages/Pagination';
 
 const S = {};
 S.Main = styled.div`
@@ -16,30 +14,16 @@ S.Main = styled.div`
   min-width: 240px;
   position: relative;
 `;
-S.BackgroundFlower = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url(${BackgroundImageFlower}) no-repeat center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-`;
-S.ScrollGuide = styled.div`
-  position: fixed;
-  top: 10px;
-  color: deeppink;
-  font-size: 28px;
-  font-weight: 800;
-`;
 
-function Main(props) {
-  const { scrollX, scrollY } = useWindowScrollPositions();
+const pageList = [
+  { index: 1, category: '커버' },
+  { index: 2, category: '인사말' },
+  { index: 3, category: '장소와 시간' },
+  { index: 4, category: '사진' },
+  { index: 5, category: '혼주 연락처' },
+];
+
+function Main() {
   const [ pageNum, setPageNum ] = useState(1);
   const lastPageNum = 5;
   
@@ -76,9 +60,7 @@ function Main(props) {
   return (
     <S.Main id='main'>
       <Pages pageNum={pageNum} />
-      <S.ScrollGuide>
-        Scroll position is ({scrollX}, {scrollY})
-      </S.ScrollGuide>
+      <Pagination pageNum={pageNum} pages={pageList} />
     </S.Main>
   );
 }
